@@ -26,7 +26,9 @@ export default {
 <style lang="css" scoped>
 
 .art-list{
+  width: 60%;
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-around;
 }
 </style>
