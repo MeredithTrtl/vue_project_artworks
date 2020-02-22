@@ -1,6 +1,6 @@
 <template lang="html">
   <section>
-    <p>{{artwork.title}}</p>
+    <!-- <p>{{artwork.title}}</p> -->
     <img :src="artwork.webImage.url" alt="">
     <button v-on:click="moreInfo">More Info</button>
   </section>
@@ -26,7 +26,7 @@ export default {
 section{
   display: flex;
   flex-direction: column;
-  padding: 20px;
+  padding: 5px;
   align-items: center;
 }
 

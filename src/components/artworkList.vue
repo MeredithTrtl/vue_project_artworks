@@ -1,6 +1,5 @@
 <template lang="html">
   <section v-if='artworks.length'>
-    <h2>All The Arts</h2>
     <div class="art-list">
     <artwork-list-item
     v-for="(artwork, index) in artworks"
@@ -26,7 +25,7 @@ export default {
 <style lang="css" scoped>
 
 .art-list{
-  width: 60%;
+  width: 80%;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;

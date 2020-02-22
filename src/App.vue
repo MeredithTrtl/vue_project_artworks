@@ -1,12 +1,13 @@
 <template lang="html">
   <main>
-    <h1>cool gallery</h1>
+    <div class="top">
+      <h1>The Stillest Lives</h1>
+      <artwork-detail
+      v-if="selectedArtwork"
+      :artwork='selectedArtwork'></artwork-detail>
+      <artwork-list :artworks='artworks'></artwork-list>
+    </div>
     <my-artworks-list :myArtworks='myArtworks'></my-artworks-list>
-    <artwork-detail
-    v-if="selectedArtwork"
-    :artwork='selectedArtwork'></artwork-detail>
-    <artwork-list :artworks='artworks'></artwork-list>
-
   </main>
 </template>
 
@@ -31,14 +32,14 @@ export default {
   },
   methods:{
     getArtworks: function(){
-      return fetch('https://www.rijksmuseum.nl/api/en/collection?key=M9jFGAc3&q=still%life&ps=100&s=relevance&type=painting')
+      return fetch('https://www.rijksmuseum.nl/api/en/collection?key=M9jFGAc3&q=still%life&ps=100&s=relevance&')
       .then(res => res.json())
 
       .then(data => {
-          const artworkData = data.artObjects
-          artworkData.forEach(artwork => (artwork.inMyGallery = false));
-          this.artworks = artworkData;
-        })
+        const artworkData = data.artObjects
+        artworkData.forEach(artwork => (artwork.inMyGallery = false));
+        this.artworks = artworkData;
+      })
 
     },
     addToGallery: function(artwork){
@@ -69,9 +70,12 @@ export default {
 </script>
 
 <style lang="css" scoped>
+
+main {
+  display: flex;
+}
+
 </style>
 
 
-<!-- fetch('https://api.punkapi.com/v2/beers')
-.then(res => res.json())
-.then(beers => this.beers = beers) -->
+<!--  -->

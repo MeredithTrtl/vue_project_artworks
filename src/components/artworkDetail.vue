@@ -5,7 +5,8 @@
     <p>Made By: {{artwork.principalOrFirstMaker}}</p>
     <p>Year: {{artwork.longTitle | getDate}}</p>
     <p><a :href="artwork.links.web">Museum</a></p>
-    <img :src="artwork.webImage.url" alt="">
+    <img id="border1" :src="artwork.webImage.url" alt="">
+
     <p><button v-on:click="addToGallery">Add To My Gallery</button></p>
   </section>
 
@@ -34,6 +35,10 @@ export default {
 
 img{
   height: 500px;
+}
+
+#border1 {
+
 }
 
 </style>

@@ -1,6 +1,6 @@
 <template lang="html">
   <section>
-    <p>{{myArtwork.longTitle}}</p>
+    <!-- <p>{{myArtwork.longTitle}}</p> -->
     <img :src="myArtwork.webImage.url" alt="">
     <p><button v-on:click="rmvFromGallery">Remove From Gallery</button></p>
   </section>
