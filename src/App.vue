@@ -1,5 +1,8 @@
 <template lang="html">
   <main>
+    <header>
+      <artwork-header :images='images'></artwork-header>
+    </header>
     <div class="top">
       <h1>The Stillest Lives</h1>
       <artwork-detail
@@ -13,6 +16,7 @@
 
 <script>
 import { eventBus } from './main.js'
+import artworkHeader from './components/artworkHeader.vue'
 import artworkList from './components/artworkList.vue'
 import artworkDetail from './components/artworkDetail.vue'
 import myArtworksList from './components/myArtworksList.vue'
@@ -22,7 +26,8 @@ export default {
   data(){
     return{
       artworks: [],
-      selectedArtwork: null
+      selectedArtwork: null,
+      images: []
     }
   },
   computed: {
@@ -40,6 +45,18 @@ export default {
         artworkData.forEach(artwork => (artwork.inMyGallery = false));
         this.artworks = artworkData;
       })
+    },
+
+    getImages: function(){
+      return fetch('https://www.rijksmuseum.nl/api/en/collection?key=M9jFGAc3&q=still%life&ps=100&s=relevance&')
+      .then(res => res.json())
+
+      .then(data => {
+        const imageData = data.artObjects;
+        let headerImages = []
+        imageData.forEach(image => headerImages.push(image.headerImage.url))
+        this.images = headerImages;
+      })
 
     },
     addToGallery: function(artwork){
@@ -53,6 +70,7 @@ export default {
   },
   mounted(){
     this.getArtworks();
+    this.getImages();
 
     eventBus.$on('artwork-selected', artwork => (this.selectedArtwork = artwork))
 
@@ -64,7 +82,8 @@ export default {
   components: {
     "artwork-list": artworkList,
     "artwork-detail": artworkDetail,
-    "my-artworks-list": myArtworksList
+    "my-artworks-list": myArtworksList,
+    "artwork-header": artworkHeader
   },
 }
 </script>
