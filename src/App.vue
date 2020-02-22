@@ -44,6 +44,10 @@ export default {
     addToGallery: function(artwork){
       const index = this.artworks.indexOf(artwork);
       this.artworks[index].inMyGallery = true;
+    },
+    rmvFromGallery: function(artwork){
+      const index = this.artworks.indexOf(artwork);
+      this.artworks[index].inMyGallery = false;
     }
   },
   mounted(){
@@ -52,6 +56,8 @@ export default {
     eventBus.$on('artwork-selected', artwork => (this.selectedArtwork = artwork))
 
     eventBus.$on('add-to-gallery', artwork => this.addToGallery(artwork))
+
+    eventBus.$on('rmv-from-gallery', artwork => this.rmvFromGallery(artwork))
 
   },
   components: {
