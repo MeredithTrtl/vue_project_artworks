@@ -1,7 +1,9 @@
 <template lang="html">
   <section>
-    <p>{{artwork.longTitle}}</p>
-      <a :href="artwork['links'].web">Museum Site</a>
+    <p>Title: {{artwork.title}}</p>
+    <p>Made By: {{artwork.principalOrFirstMaker}}</p>
+    <p>Year: {{artwork.longTitle | getDate}}</p>
+    <a :href="artwork['links'].web">Museum</a>
   </section>
 
 </template>
@@ -9,7 +11,13 @@
 <script>
 export default {
   name: 'artwork-detail',
-  props: ['artwork']
+  props: ['artwork'],
+  filters: {
+    getDate(string){
+      const array = string.split(' ')
+      return array.slice(-1)[0]
+    }
+  }
 }
 </script>
 
