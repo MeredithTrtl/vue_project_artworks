@@ -1,20 +1,26 @@
 <template lang="html">
-<section>
-  <img v-for="(image, index) in images"
-  :image = "image"
-  :key = "index"
-  :src="image" class="mySlides">
-</section>
+      <img :src="randomImg" />
 </template>
 
 <script>
 export default {
   name: 'header-image',
-  props: ['images']
-  }
+  props: ['images'],
 
+  computed: {
+    randomImg: function(){
+      return this.images[Math.floor( Math.random() * this.images.length )]
+    }
+  }
+};
 </script>
 
 <style lang="css" scoped>
+
+
+img {
+  height:400px;
+  width:100%
+}
 
 </style>

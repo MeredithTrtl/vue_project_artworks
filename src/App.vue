@@ -1,17 +1,20 @@
 <template lang="html">
-  <main>
-    <header>
+    <div class="page">
+    <div class="header">
       <artwork-header :images='images'></artwork-header>
-    </header>
-    <div class="top">
-      <h1>The Stillest Lives</h1>
-      <artwork-detail
-      v-if="selectedArtwork"
-      :artwork='selectedArtwork'></artwork-detail>
-      <artwork-list :artworks='artworks'></artwork-list>
     </div>
-    <my-artworks-list :myArtworks='myArtworks'></my-artworks-list>
-  </main>
+    <div class ='main'>
+      <div class="top">
+        <h1>The Stillest Lives</h1>
+        <my-artworks-list :myArtworks='myArtworks'></my-artworks-list>
+        <artwork-detail
+        v-if="selectedArtwork"
+        :artwork='selectedArtwork'></artwork-detail>
+        <artwork-list :artworks='artworks'></artwork-list>
+      </div>
+    </div>
+    </div>
+
 </template>
 
 <script>
@@ -37,7 +40,7 @@ export default {
   },
   methods:{
     getArtworks: function(){
-      return fetch('https://www.rijksmuseum.nl/api/en/collection?key=M9jFGAc3&q=still%life&ps=100&s=relevance&')
+      return fetch('https://www.rijksmuseum.nl/api/en/collection?key=M9jFGAc3&q=still%life&ps=100&s=relevance&type=painting')
       .then(res => res.json())
 
       .then(data => {
@@ -48,7 +51,7 @@ export default {
     },
 
     getImages: function(){
-      return fetch('https://www.rijksmuseum.nl/api/en/collection?key=M9jFGAc3&q=still%life&ps=100&s=relevance&')
+      return fetch('https://www.rijksmuseum.nl/api/en/collection?key=M9jFGAc3&q=still%life&ps=100&s=relevance&&type=painting')
       .then(res => res.json())
 
       .then(data => {
@@ -90,8 +93,19 @@ export default {
 
 <style lang="css" scoped>
 
-main {
+.page {
+  background-color: #1a0d00;
+  color: #fff3e6;
+  font-family: arial, ;
+}
+
+.main {
   display: flex;
+}
+
+.header {
+  width: 100%;
+  height: 460px;
 }
 
 </style>

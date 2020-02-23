@@ -1,8 +1,7 @@
 <template lang="html">
   <section>
-    <!-- <p>{{myArtwork.longTitle}}</p> -->
     <img :src="myArtwork.webImage.url" alt="">
-    <p><button v-on:click="rmvFromGallery">Remove From Gallery</button></p>
+    <p><button v-on:click="rmvFromGallery">Remove From My Gallery</button></p>
   </section>
 </template>
 
@@ -21,6 +20,13 @@ export default {
 </script>
 
 <style lang="css" scoped>
+
+section{
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+  align-items: center;
+}
 
 img {
   height: 400px;
